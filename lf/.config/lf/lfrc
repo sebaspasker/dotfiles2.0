@@ -1,0 +1,48 @@
+set preview true
+set previewer ~/.config/lf/preview.sh
+set drawbox true
+set hidden true
+set icons true
+
+map . set hidden!
+map delete set hidden!
+map D delete
+map yy copy
+map dd cut
+# pegar
+map pp paste
+
+# renombrar
+map cw rename
+
+# crear archivo
+map a touch
+
+# crear carpeta
+map A mkdir
+
+# ir arriba
+map gg top
+
+# ir abajo
+map G bottom
+
+# salir
+map q quit
+
+map S $fish
+
+map o $vim "$f"
+
+cmd z %{{
+    result="$(zoxide query --exclude "$PWD" "$@" | sed 's/\\/\\\\/g;s/"/\\"/g')"
+    lf -remote "send $id cd \"$result\""
+}}
+
+cmd zi ${{
+    result="$(zoxide query -i | sed 's/\\/\\\\/g;s/"/\\"/g')"
+    lf -remote "send $id cd \"$result\""
+}}
+
+map <lt>j push :z<space>
+map <lt>z :zi

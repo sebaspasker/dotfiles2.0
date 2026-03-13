@@ -1,0 +1,55 @@
+{
+  "layer": "top",
+  "position": "top",
+
+  // Déjalo en 0 para que mande el CSS (evita el warning de mínimos)
+  "height": 0,
+
+  // Menos aire entre módulos
+  "spacing": 6,
+
+  "modules-left": ["hyprland/workspaces"],
+  "modules-center": ["clock"],
+  "modules-right": ["cpu", "memory", "network", "pulseaudio", "battery", "tray"],
+
+  "hyprland/workspaces": {
+    "format": "{icon}",
+    "format-icons": {
+      "1": "1", "2": "2", "3": "3", "4": "4", "5": "5",
+      "6": "6", "7": "7", "8": "8", "9": "9", "10": "10",
+      "default": "•"
+    },
+    "on-click": "activate"
+  },
+
+  "clock": {
+    "format": "{:%a %d %b  %H:%M}"
+  },
+
+  "cpu": { "format": "  {usage}%" },
+  "memory": { "format": "  {percentage}%" },
+
+  "network": {
+    "format-wifi": "  {signalStrength}%",
+    "format-ethernet": "󰈀  {ifname}",
+    "format-disconnected": "󰖪  offline"
+  },
+
+  "pulseaudio": {
+    "format": "  {volume}%",
+    "format-muted": "󰝟  muted",
+    "scroll-step": 5
+  },
+
+  "battery": {
+    "format": "󰁹  {capacity}%",
+    "format-charging": "󰂄  {capacity}%",
+    "format-full": "󰁹  {capacity}%"
+  },
+
+  "tray": {
+    // Más pequeño => baja el mínimo real del módulo
+    "icon-size": 12,
+    "spacing": 3
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "languageserver": {
+    "nix": {
+      "command": "nil",
+      "filetypes": [
+        "nix"
+      ],
+      "rootPatterns": [
+        "flake.nix",
+        "shell.nix",
+        "default.nix"
+      ],
+      "initializationOptions": {}
+    }
+  },
+  "coc.preferences.formatOnSave": true,
+  "[nix]": {
+    "coc.preferences.formatOnSave": true
+  }
+}

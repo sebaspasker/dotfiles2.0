@@ -1,0 +1,33 @@
+" Generado por wallust
+if exists('syntax_on')
+  syntax reset
+endif
+
+set background=dark
+hi clear
+
+if has('termguicolors')
+  set termguicolors
+endif
+
+highlight Normal       guifg={{foreground}} guibg={{background}}
+highlight LineNr       guifg={{color8}}     guibg={{background}}
+highlight CursorLineNr guifg={{color7}}     gui=bold
+highlight CursorLine   guibg={{color0}}
+highlight Comment      guifg={{color8}}     gui=italic
+highlight Constant     guifg={{color3}}
+highlight String       guifg={{color2}}
+highlight Identifier   guifg={{color6}}
+highlight Function     guifg={{color4}}
+highlight Statement    guifg={{color5}}
+highlight Type         guifg={{color6}}
+highlight PreProc      guifg={{color5}}
+highlight Special      guifg={{color1}}
+highlight Visual       guibg={{color8}}
+highlight Search       guifg={{background}} guibg={{color3}}
+highlight StatusLine   guifg={{foreground}} guibg={{color0}}
+highlight StatusLineNC guifg={{color8}}     guibg={{color0}}
+highlight VertSplit    guifg={{color0}}     guibg={{color0}}
+highlight SignColumn   guibg={{background}}
+highlight Pmenu        guifg={{foreground}} guibg={{color0}}
+highlight PmenuSel     guifg={{background}} guibg={{color4}}
