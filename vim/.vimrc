@@ -77,8 +77,8 @@ Plug 'prettier/vim-prettier'
 Plug 'SirVer/ultisnips'  
 Plug 'honza/vim-snippets'
 " Markdown
-Plug 'vim-pandoc/vim-pandoc'      
-Plug 'vim-pandoc/vim-pandoc-syntax'
+" Plug 'vim-pandoc/vim-pandoc'      
+" Plug 'vim-pandoc/vim-pandoc-syntax'
 " Debugger
 Plug 'vim-vdebug/vdebug'
 " Nix language support
@@ -363,6 +363,5 @@ inoremap <silent><expr> <S-Tab> coc#pum#visible() ? coc#pum#prev(1) : "\<S-Tab>"
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
 
 " Copilot con Ctrl+Enter
-inoremap <silent><script><expr> <C-CR> copilot#Accept("\<CR>")
+inoremap <silent><script><expr> Ñ copilot#Accept("\<CR>")
 let g:copilot_no_tab_map = v:true
-
