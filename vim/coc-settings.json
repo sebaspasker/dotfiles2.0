@@ -16,5 +16,6 @@
   "coc.preferences.formatOnSave": true,
   "[nix]": {
     "coc.preferences.formatOnSave": true
-  }
+  },
+  "snippets.ultisnips.pythonPrompt": false
 }

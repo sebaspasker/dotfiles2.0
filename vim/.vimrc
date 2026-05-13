@@ -30,68 +30,68 @@
 " %%@@@@@@@@@@@@@@@00000000000000000000000000000@@@@@@@@@%%%%%
 "
 
-call plug#begin()
+"call plug#begin()
 
-" Coc
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" List your plugins here
-Plug 'tpope/vim-sensible'
-"Mete las (, {, etc en pareja
-Plug 'jiangmiao/auto-pairs'
-" Correcto indent de python
-Plug 'vim-scripts/indentpython.vim'
-" Supertab
-" Plug 'ervandew/supertab'
-" Syntastic -> Compila en tiempo real para saber errores
-" Plug 'vim-syntastic/syntastic'
-" Syntastic check flake8
-Plug 'nvie/vim-flake8'
-" Completa lo que no esté completo de pairs
-Plug 'tpope/vim-surround'
-" Repite con . un yank
-Plug 'tpope/vim-repeat'
-" Comenta con gcc
-Plug 'tpope/vim-commentary'
-" FZF -> Fuzzer
-Plug 'junegunn/fzf', { 'do': { -> fzf#install()  }} " fzf
-Plug 'junegunn/fzf.vim'
-" NerdTree
-Plug 'preservim/nerdtree'							
-" JS Beautifier
-Plug 'maksimr/vim-jsbeautify'
-" Higlight yank
-Plug 'machakann/vim-highlightedyank'
-" Git pero en vim
-Plug 'rhysd/git-messenger.vim'
-" Vim smoothie scrolling
-Plug 'psliwka/vim-smoothie'
-" Enhancing in-buffer search experience
-Plug 'junegunn/vim-slash'
-" Python formatter
-Plug 'psf/black'  
-" Color preview
-Plug 'ap/vim-css-color'
-" HTML, CSS, Javascript formatter
-Plug 'prettier/vim-prettier'
-" Snippets
-Plug 'SirVer/ultisnips'  
-Plug 'honza/vim-snippets'
-" Markdown
-" Plug 'vim-pandoc/vim-pandoc'      
-" Plug 'vim-pandoc/vim-pandoc-syntax'
-" Debugger
-Plug 'vim-vdebug/vdebug'
-" Nix language support
-Plug 'LnL7/vim-nix'
+"" Coc
+"Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"" List your plugins here
+"Plug 'tpope/vim-sensible'
+""Mete las (, {, etc en pareja
+"Plug 'jiangmiao/auto-pairs'
+"" Correcto indent de python
+"Plug 'vim-scripts/indentpython.vim'
+"" Supertab
+"" Plug 'ervandew/supertab'
+"" Syntastic -> Compila en tiempo real para saber errores
+"" Plug 'vim-syntastic/syntastic'
+"" Syntastic check flake8
+"Plug 'nvie/vim-flake8'
+"" Completa lo que no esté completo de pairs
+"Plug 'tpope/vim-surround'
+"" Repite con . un yank
+"Plug 'tpope/vim-repeat'
+"" Comenta con gcc
+"Plug 'tpope/vim-commentary'
+"" FZF -> Fuzzer
+"Plug 'junegunn/fzf', { 'do': { -> fzf#install()  }} " fzf
+"Plug 'junegunn/fzf.vim'
+"" NerdTree
+"Plug 'preservim/nerdtree'							
+"" JS Beautifier
+"Plug 'maksimr/vim-jsbeautify'
+"" Higlight yank
+"Plug 'machakann/vim-highlightedyank'
+"" Git pero en vim
+"Plug 'rhysd/git-messenger.vim'
+"" Vim smoothie scrolling
+"Plug 'psliwka/vim-smoothie'
+"" Enhancing in-buffer search experience
+"Plug 'junegunn/vim-slash'
+"" Python formatter
+"Plug 'psf/black'  
+"" Color preview
+"Plug 'ap/vim-css-color'
+"" HTML, CSS, Javascript formatter
+"Plug 'prettier/vim-prettier'
+"" Snippets
+"Plug 'SirVer/ultisnips'  
+"Plug 'honza/vim-snippets'
+"" Markdown
+"" Plug 'vim-pandoc/vim-pandoc'      
+"" Plug 'vim-pandoc/vim-pandoc-syntax'
+"" Debugger
+"Plug 'vim-vdebug/vdebug'
+"" Nix language support
+"Plug 'LnL7/vim-nix'
 
-" Enseña modificaciones en git
-if has('nvim') || has('patch-8.0.902')
-  Plug 'mhinz/vim-signify'                        " Vim signify diff in file
-else
-  Plug 'mhinz/vim-signify', { 'branch': 'legacy'  }
-endif
+"" Enseña modificaciones en git
+"if has('nvim') || has('patch-8.0.902')
+"  Plug 'mhinz/vim-signify'                        " Vim signify diff in file
+"else
+"  Plug 'mhinz/vim-signify', { 'branch': 'legacy'  }
+"endif
 
-call plug#end()
+"call plug#end()
 
 syntax enable
 
@@ -192,6 +192,12 @@ autocmd BufNewFile,BufRead *.asm set filetype=nasm
 set nospell
 set spelllang=es_es,en_us
 autocmd FileType markdown setlocal spell
+
+augroup markdownNoSpell
+  autocmd!
+  autocmd Syntax markdown syn match markdownNoSpellUrl '\v\w+://\S+' contains=@NoSpell
+  autocmd Syntax markdown syn match markdownNoSpellEmail '\v\S+\@\S+\.\S+' contains=@NoSpell
+augroup END
 
 " Usefull for element/func listing without preliminar references to TabNine
 " <c-x><c-o>
@@ -360,8 +366,25 @@ inoremap <silent><expr> <Tab> coc#pum#visible() ? coc#pum#next(1) : "\<Tab>"
 inoremap <silent><expr> <S-Tab> coc#pum#visible() ? coc#pum#prev(1) : "\<S-Tab>"
 
 " Confirmar selección CoC con Enter
-inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+inoremap <silent><expr> <S-CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
 
 " Copilot con Ctrl+Enter
 inoremap <silent><script><expr> Ñ copilot#Accept("\<CR>")
 let g:copilot_no_tab_map = v:true
+
+" Smoothie enablesd
+let g:smoothie_enabled = 1
+
+if exists('syntax_on')
+  syntax reset
+endif
+
+set background=dark
+hi clear
+
+if has('termguicolors')
+  set termguicolors
+endif
+
+colorscheme mycolors
+let g:copilot_node_command = expand('~/.nix-profile/bin/node')

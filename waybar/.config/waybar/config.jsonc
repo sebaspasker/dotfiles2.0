@@ -6,7 +6,8 @@
   // Menos aire entre módulos
   "spacing": 6,
   "modules-left": [
-    "hyprland/workspaces"
+    "hyprland/workspaces",
+    "hyprland/window"
   ],
   "modules-center": [
     "clock"
@@ -17,12 +18,17 @@
     "network",
     "pulseaudio",
     "battery",
+    "custom/chargerate",
     "tray"
   ],
   "hyprland/workspaces": {
     "format": "{id}",
     "sort-by-number": true,
     "on-click": "activate"
+  },
+  "hyprland/windows": {
+    "format": "{}",
+    "max-length": 40
   },
   "clock": {
     "format": "{:%a %d %b  %H:%M}"
@@ -52,5 +58,11 @@
     // Más pequeño => baja el mínimo real del módulo
     "icon-size": 12,
     "spacing": 3
+  },
+  "custom/chargerate": {
+    "exec": "upower -i $(upower -e | grep BAT) | rg energy-rate | rg -o '[0-9,]+ W'",
+    "interval": 5,
+    "format": "⚡ {}",
+    "tooltip": false
   }
 }

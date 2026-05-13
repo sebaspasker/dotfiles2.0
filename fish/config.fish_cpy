@@ -325,9 +325,6 @@ end
 
 source ~/.config/fish/keybind.fish
 
-# Set starship prompt
-starship init fish | source
-
 if string match -q "st-*" "$TERM"
     set -e VTE_VERSION
 end
@@ -341,7 +338,7 @@ set EDITOR vim
 alias pbpaste "xclip -selection clipboard -o"
 
 # Cargo
-fish_add_path /home/sebasp/.cargo/bin
+fish_add_path /home/sebasp/.local/bin/
 
 # Autojump
 

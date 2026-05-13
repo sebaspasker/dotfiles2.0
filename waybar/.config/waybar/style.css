@@ -33,6 +33,7 @@ window#waybar {
 #pulseaudio,
 #battery,
 #tray,
+#custom-chargerate,
 #workspaces {
   background: alpha(@panel, 0.60);
   color: @fg;
